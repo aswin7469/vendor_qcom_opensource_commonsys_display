@@ -8,12 +8,9 @@ PRODUCT_PACKAGES += libdisplayconfig.system \
 
 SOONG_CONFIG_NAMESPACES += qtidisplaycommonsys
 # Soong Keys
-SOONG_CONFIG_qtidisplaycommonsys := displayconfig_enabled gralloc_handle_has_no_reserved_size displayextension composer3ext
-SOONG_CONFIG_qtiunifeddraw := qtiunifeddraw_enabled
+SOONG_CONFIG_qtidisplaycommonsys := gralloc_handle_has_no_reserved_size displayextension composer3ext
 # Soong Values
-SOONG_CONFIG_qtidisplaycommonsys_displayconfig_enabled := false
 SOONG_CONFIG_qtidisplaycommonsys_gralloc_handle_has_no_reserved_size := false
-SOONG_CONFIG_qtiunifeddraw_qtiunifeddraw_enabled := true
 # displayextension controls global compile time disablement of SF extensions
 SOONG_CONFIG_qtidisplaycommonsys_displayextension := false
 
