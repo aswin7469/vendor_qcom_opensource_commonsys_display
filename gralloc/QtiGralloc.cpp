@@ -27,6 +27,13 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+ /*
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ *
+ * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
+ */
+
 #include "QtiGralloc.h"
 
 #include <log/log.h>
@@ -329,6 +336,8 @@ MetadataType getMetadataType(uint32_t in) {
       return MetadataType_CustomContentMetadata;
     case QTI_CRC_BUFFER:
         return MetadataType_CRCBuffer;
+    case QTI_BUFFER_DEQUEUE_DURATION:
+      return MetadataType_BufferDequeueDuration;
     default:
       return MetadataType_Invalid;
   }
@@ -466,6 +475,11 @@ Error get(void *buffer, uint32_t type, void *param) {
     case QTI_CRC_BUFFER:
       err = decodeCRCBufferDataRaw(bytestream, param);
       break;
+    case QTI_BUFFER_DEQUEUE_DURATION:
+      err = static_cast<Error>(android::gralloc4::decodeInt64(
+          qtigralloc::MetadataType_BufferDequeueDuration, bytestream,
+          reinterpret_cast<int64_t *>(param)));
+      break;
     default:
       param = nullptr;
       return Error::UNSUPPORTED;
@@ -548,6 +562,11 @@ Error set(void *buffer, uint32_t type, void *param) {
       break;
     case QTI_CUSTOM_CONTENT_METADATA:
       err = encodeCustomContentMetadata(param, &bytestream);
+      break;
+    case QTI_BUFFER_DEQUEUE_DURATION:
+      err = static_cast<Error>(android::gralloc4::encodeInt64(
+          qtigralloc::MetadataType_BufferDequeueDuration,
+          *reinterpret_cast<int64_t *>(param), &bytestream));
       break;
     default:
       param = nullptr;
