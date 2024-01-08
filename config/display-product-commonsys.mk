@@ -8,7 +8,7 @@ PRODUCT_PACKAGES += libdisplayconfig.system \
 
 SOONG_CONFIG_NAMESPACES += qtidisplaycommonsys
 # Soong Keys
-SOONG_CONFIG_qtidisplaycommonsys := gralloc_handle_has_no_reserved_size displayextension composer3ext gralloc_handle_has_no_custom_content_md_reserved_size gralloc_handle_has_no_ubwcp
+SOONG_CONFIG_qtidisplaycommonsys := displayextension composer3ext gralloc_handle_has_no_reserved_size gralloc_handle_has_no_custom_content_md_reserved_size gralloc_handle_has_no_ubwcp
 # Soong Values
 SOONG_CONFIG_qtidisplaycommonsys_gralloc_handle_has_no_reserved_size := false
 SOONG_CONFIG_qtidisplaycommonsys_gralloc_handle_has_no_custom_content_md_reserved_size := false
@@ -22,7 +22,6 @@ SOONG_CONFIG_qtidisplaycommonsys_displayextension := false
 # properties
 SOONG_CONFIG_qtidisplaycommonsys_composer3ext := false
 SOONG_CONFIG_qtidisplaycommonsys_gralloc_handle_has_no_ubwcp := false
-
 
 ifeq ($(call is-vendor-board-platform,QCOM),true)
     SOONG_CONFIG_qtidisplaycommonsys_displayextension := true
